@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+
+    android:id="@+id/cd1"
+    android:layout_width="330dp"
+    android:layout_height="120dp"
+    android:layout_margin="15dp"
+    android:layout_marginLeft="35dp"
+    android:layout_marginBottom="5dp"
+    app:cardBackgroundColor="#8193D3"
+    app:cardElevation="10dp"
+    app:cardCornerRadius="15dp">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#454A5E"
+        android:paddingLeft="1dp">
+
+        <TextView
+            android:id="@+id/runs"
+            android:layout_width="187dp"
+            android:layout_height="43dp"
+            android:layout_marginStart="4dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="19dp"
+            android:text="@string/textview"
+            android:textColor="@color/white"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.263" />
+
+        <TextView
+            android:id="@+id/batsmenname"
+            android:layout_width="185dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:text="@string/teama"
+            android:textColor="@color/white"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.034"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/balls"
+            android:layout_width="197dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="2dp"
+            android:gravity="center|left"
+            android:text="TextView"
+            android:textColor="#BBF7FA"
+            app:layout_constraintBottom_toTopOf="@+id/runs"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/fours"
+            android:layout_width="103dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="6dp"
+            android:gravity="center_vertical"
+            android:text="TextView"
+            android:textColor="@color/white"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toTopOf="@+id/sixex"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/runs"
+            app:layout_constraintTop_toBottomOf="@+id/balls" />
+
+        <TextView
+            android:id="@+id/sixex"
+            android:layout_width="103dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="4dp"
+            android:gravity="center_vertical"
+            android:paddingRight="0dp"
+            android:text="TextView"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/toss"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/batsmenname" />
+
+        <TextView
+            android:id="@+id/toss"
+            android:layout_width="337dp"
+            android:layout_height="19dp"
+            android:layout_marginBottom="5dp"
+            android:gravity="center"
+            android:text="TextView"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.166"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/batsmenname"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="71dp"
+            android:layout_height="22dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="4dp"
+            android:gravity="center|right"
+            android:text="TextView"
+            android:textColor="#F2DA3E3E"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/balls"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
