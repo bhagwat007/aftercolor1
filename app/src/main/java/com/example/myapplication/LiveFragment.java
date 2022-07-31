@@ -97,6 +97,7 @@ public class LiveFragment extends Fragment {
         url = "https://rest.entitysport.com/v2/matches/" + Match_url + url;
         curl = "https://rest.entitysport.com/v2/matches/" + Match_url + curl;
         Log.i("url:::>>>>",url);
+
         ProgressDialog progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("loading...");
         progressDialog.show();
@@ -111,18 +112,42 @@ public class LiveFragment extends Fragment {
                                 try {
                                     JSONObject res = response.getJSONObject("response");
                                     JSONArray batsmens = res.getJSONArray("batsmen");
-                                    for (int i =0 ;i<batsmens.length();i++){
+                                    for (int i = 0; i < batsmens.length(); i++) {
                                         JSONObject batsmen_object = batsmens.getJSONObject(i);
                                         String tbatsmen = batsmen_object.getString("name");
-                                        String  batsmen_runs = batsmen_object.getString("runs");
+                                        String batsmen_runs = batsmen_object.getString("runs");
                                         String ball_faced = batsmen_object.getString("balls_faced");
                                         String fours = batsmen_object.getString("fours");
                                         String sixes = batsmen_object.getString("sixes");
                                         String strike_rate = batsmen_object.getString("strike_rate");
-                                        mroundList.add(new Livefragmentdata(0,tbatsmen,batsmen_runs,ball_faced,fours,sixes,strike_rate));
+                                        mroundList.add(new Livefragmentdata(0, tbatsmen, batsmen_runs, ball_faced, fours, sixes, strike_rate));
                                         Log.i("jhdsbfkjsdhjksh", sixes);
 
                                     }
+                                    JSONArray boelers = res.getJSONArray("bowlers");
+
+                                    JSONObject bowler_object = boelers.getJSONObject(0);
+                                    String bowler_name = bowler_object.getString("name");
+                                    Log.i("bowler_name:::", bowler_name);
+                                    String ball_overs = bowler_object.getString("overs");
+                                    String bowler_runs = bowler_object.getString("runs_conceded");
+                                    String bowler_maiden = bowler_object.getString("maidens");
+                                    String bowler_wickets = bowler_object.getString("wickets");
+                                    String bowler_economy = bowler_object.getString("econ");
+                                    mroundList.add(new Livefragmentdata(1, "Bowler", "O", "R", "W", "Eco", "M", ""));
+                                    mroundList.add(new Livefragmentdata(1, bowler_name, ball_overs, bowler_runs, bowler_wickets, bowler_economy, bowler_maiden, ""));
+
+                                    JSONObject bowler_object1 = boelers.getJSONObject(1);
+                                    String bowler_name1 = bowler_object1.getString("name");
+                                    Log.i("bowler_name:::", bowler_name);
+                                    String ball_overs1 = bowler_object1.getString("overs");
+                                    String bowler_runs1 = bowler_object1.getString("runs_conceded");
+                                    String bowler_maiden1 = bowler_object1.getString("maidens");
+                                    String bowler_wickets1 = bowler_object1.getString("wickets");
+                                    String bowler_economy1 = bowler_object1.getString("econ");
+                                    mroundList.add(new Livefragmentdata(1, bowler_name1, ball_overs1, bowler_runs1, bowler_wickets1, bowler_economy1, bowler_maiden1, ""));
+
+
 
 
                                 } catch (JSONException e) {
@@ -138,99 +163,23 @@ public class LiveFragment extends Fragment {
                         }, error -> {
                 });
         queue.add(jsonObjectRequest);
-        LivefragmentAdapter  livefragmentAdapter = new LivefragmentAdapter(mroundList);
-        mrecyclerView2.setAdapter(livefragmentAdapter);
-
-
-        loadData();
-
-        loadcommentry();
-
-        return view;
-
-    }
-    public  void loadData(){
-        ProgressDialog progressDialog = new ProgressDialog(getContext());
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
-
-
-        RequestQueue queue = Volley.newRequestQueue(getContext());
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-                (Request.Method.GET, url, null,
-                        new Response.Listener<JSONObject>() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                progressDialog.dismiss();
-                                try {
-
-                                    JSONObject res = response.getJSONObject("response");
-                                    JSONArray boelers = res.getJSONArray("bowlers");
-
-                                    JSONObject bowler_object = boelers.getJSONObject(0);
-                                    String bowler_name = bowler_object.getString("name");
-                                    Log.i("bowler_name:::",bowler_name);
-                                    String ball_overs = bowler_object.getString("overs");
-                                    String bowler_runs = bowler_object.getString("runs_conceded");
-                                    String bowler_maiden = bowler_object.getString("maidens");
-                                    String bowler_wickets = bowler_object.getString("wickets");
-                                    String bowler_economy = bowler_object.getString("econ");
-                                    mroundList.add(new Livefragmentdata(1,"Bowler","O","R","W","Eco","M",""));
-                                    mroundList.add(new Livefragmentdata(1,bowler_name,ball_overs,bowler_runs,bowler_wickets,bowler_economy,bowler_maiden,""));
-
-                                    JSONObject bowler_object1 = boelers.getJSONObject(1);
-                                    String bowler_name1 = bowler_object1.getString("name");
-                                    Log.i("bowler_name:::",bowler_name);
-                                    String ball_overs1 = bowler_object1.getString("overs");
-                                    String bowler_runs1 = bowler_object1.getString("runs_conceded");
-                                    String bowler_maiden1 = bowler_object1.getString("maidens");
-                                    String bowler_wickets1 = bowler_object1.getString("wickets");
-                                    String bowler_economy1 = bowler_object1.getString("econ");
-                                    mroundList.add(new Livefragmentdata(1,bowler_name1,ball_overs1,bowler_runs1,bowler_wickets1,bowler_economy1,bowler_maiden1,""));
 
 
 
-//                                    JSONArray comentryarray = res.getJSONArray("commentaries");
-//
-//                                    for (int k=0;k<comentryarray.length();k++)
-//                                    {
-//                                        JSONObject commentryobject = comentryarray.getJSONObject(k);
-//                                        String commentryruns = commentryobject.getString("score");
-//
-//                                        String commentarystats = commentryobject.getString("commentary");
-//                                        Log.i("overss::",commentryruns);
-//                                        String commentryovers = commentryobject.getString("over");
-//                                        Log.i("bowler_name:::",commentryovers);
-//                                        mroundList.add(new Livefragmentdata(COMENTRY_LAYOUT,commentryruns,commentarystats,commentryovers));
-//
-//                                    }
 
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
 
-                                LivefragmentAdapter  livefragmentAdapter = new LivefragmentAdapter(mroundList);
-                                mrecyclerView2.setAdapter(livefragmentAdapter);;
 
-                            }
+        ProgressDialog progressDialog2 = new ProgressDialog(getContext());
+        progressDialog2.setMessage("Loading...");
+        progressDialog2.show();
 
-                        }, error -> {
-                });
-        queue.add(jsonObjectRequest);
-    }
-
-    public void loadcommentry(){
-        ProgressDialog progressDialog = new ProgressDialog(getContext());
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
-
-        RequestQueue queue = Volley.newRequestQueue(getContext());
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+        RequestQueue queue2 = Volley.newRequestQueue(getContext());
+        JsonObjectRequest jsonObjectRequest2 = new JsonObjectRequest
                 (Request.Method.GET, curl, null,
                         new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
-                                progressDialog.dismiss();
+                                progressDialog2.dismiss();
                                 try {
 
                                     JSONObject res = response.getJSONObject("response");
@@ -261,9 +210,13 @@ public class LiveFragment extends Fragment {
 
                         }, error -> {
                 });
-        queue.add(jsonObjectRequest);
+        queue2.add(jsonObjectRequest2);
 
+
+
+        return view;
 
     }
+
 
 }
